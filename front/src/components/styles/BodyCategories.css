@@ -1,0 +1,8 @@
+body{
+    background-color: rgb(219, 219, 219);
+}
+.container{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    margin-top: 15px;
+}
