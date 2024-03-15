@@ -1,4 +1,4 @@
-import "../styles/BodyCategories.css"
+import "../../styles/styleCategories/BodyCategories.css"
 import FormCategory from "./FormCategory"
 import TableCategory from "./TableCategory"
 

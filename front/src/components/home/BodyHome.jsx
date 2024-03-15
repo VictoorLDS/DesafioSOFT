@@ -1,6 +1,6 @@
-import "../styles/BodyHome.css"
+import "../../styles/styleHome/BodyHome.css"
 import FormHome from "./FormHome"
-import TableHome from "./TableHome"
+import {TableHome} from "./TableHome"
 
 const BodyHome = () => {
   return (

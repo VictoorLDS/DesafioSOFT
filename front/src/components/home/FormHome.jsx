@@ -1,71 +1,76 @@
 import { useEffect, useState, Fragment } from "react"
-import '../styles/FormHome.css'
+import "../../styles/styleHome/FormHome.css"
 import { useDispatch } from "react-redux";
 import { addProductToCart } from "../../redux/cart/actions"
+import ButtonDefault from "../buttons/ButtonDefault";
 const urlproducts = "http://localhost/routes/products.php";
 
 
 const FormHome = () => {
   const dispatch = useDispatch()
-  const handleAddToCart = (e) => {
+  function handleAddToCart(e){
     e.preventDefault()
-    console.log({product, amount, price, tax})
-
     dispatch(addProductToCart({product, amount, price, tax}))
   }
   
-  const [product, setProduct] = useState("")
+  const [product, setProduct] = useState(0)
   const [products, setProducts] = useState([])
   const [amount, setAmount] = useState("")
   const [price, setPrice] = useState("")
   const [tax, setTax] = useState("")
-  const [productSelected, setProductSelect] = useState({})
+  const [productSelected, setProductSelected] = useState({})
+
 
   
   async function getProducts(){
     const res = await fetch(urlproducts)
     const data = await res.json()
     setProducts(data)
-    console.log(data)
   }
   useEffect(()=>{
     getProducts()
 },[])
+
+useEffect(() =>{
+  changeFormValues()
+  console.log(product)
+},[product])
+
 async function changeFormValues() {
-  const res = await fetch(urlproducts);
-  const data = await res.json();
-  const products = data
-   setProductSelect(products.find((p) => p.code == product));
-  if (productSelected) {
-    setPrice(productSelected.price)
-    setTax((productSelected.tax))
+  const res = await fetch(urlproducts).then(res => res.json());
+  const products = res
+  const prodSel = products.find((p) => p.code == product);
+  if (prodSel) {
+    setProductSelected(prodSel)
+    setPrice(prodSel.price)
+    setTax((prodSel.tax))
   }
 }
-changeFormValues()
+
+// changeFormValues()
 
 
 
 
   return (
     <>
-            <div className="formHome">
+        <div className="formHome">
         <h1>Home</h1>
-        <form id="home-form" onSubmit={handleAddToCart}>
+        <form id="home-form">
             <div className="inputsprod">
-              <select name="product" value={product} onChange={(e) => setProduct(e.target.value)} id="prod-select">
-                {products.map((product) => (
-                    <Fragment key={product.code}>
-                    <option hidden>Select</option>
-                    <option value={product.code} key={product.code}>{product.name}</option>
+              <select name="product" defaultValue={0} onChange={(e) => setProduct(e.target.value)} id="prod-select">
+                {products.map((i) => (
+                    <Fragment key={i.code}>
+                    <option value={0} hidden>Select</option>
+                    <option value={i.code} key={i.code}>{i.name}</option>
                     </Fragment>
                 ))}
                 </select>
-                <input className="input" required min={1} max={productSelected?.amount} type="number" name="amount" id="amount" value={amount} onChange={(e) => setAmount(e.target.value)}  placeholder="Amount"/>
-                <input disabled required className="input" type="number" name="price" id="price" value={price} onChange={(e) => setPrice(e.target.value)} placeholder="Price"/>
-                <input disabled required className="input" type="number" name="tax" id="tax" value={tax} onChange={(e) => setTax(e.target.value)} placeholder="Tax"/>
+                <input className="input" required min={1} max={productSelected?.amount}  type="number" name="amount" id="amount" value={amount} onChange={(e) => setAmount(e.target.value)}  placeholder="Amount"/>
+                <input disabled required className="input" type="number" name="price" id="price" value={price}  placeholder="Price"/>
+                <input disabled required className="input" type="number" name="tax" id="tax" value={tax} placeholder="Tax"/>
              </div>
-
-            <button type="submit" className="addbutton" id="add-prod-but" name="add-prod-but" >Add Product</button>
+             <ButtonDefault classStyle={"addbutton"} isDelete={false} buttonFunction={handleAddToCart} Text={"Add to Cart"}/>
         </form>
     </div>
     </>

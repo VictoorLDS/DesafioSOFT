@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from 'react';
-import '../styles/HistoryModal.css'
+import "../../styles/styleHistory/HistoryModal.css"
 const urlorderitem = "http://localhost/routes/order_item.php";
 
 const HistoryModal = ({order, setOrder}) => {

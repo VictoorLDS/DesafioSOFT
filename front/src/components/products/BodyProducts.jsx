@@ -1,4 +1,4 @@
-import "../styles/BodyProducts.css"
+import "../../styles/styleProducts/BodyProducts.css"
 import FormProducts from "./FormProducts"
 import TableProducts from "./TableProducts"
 

@@ -1,30 +1,7 @@
-import '../styles/TableProduct.css'
-import { useEffect, useState } from "react"
-const url = "http://localhost/routes/products.php";
+import "../../styles/styleProducts/TableProduct.css"
+import ProductItem from './ProductItem'
 
 const TableProducts = () => {
-
-    const [products, setProducts] = useState([])
-
-
-    async function getProducts() {
-        const res = await fetch(url);
-        const data = await res.json();
-        setProducts(data);
-    }
-
-    useEffect(() =>{
-        getProducts()
-    }, [])
-
-    async function deleteProduct(code){
-        await fetch(`http://localhost/routes/products.php?code=${code}`,{
-            method: "DELETE",
-            
-        })
-        getProducts()
-      }
-
     return (
 
 
@@ -51,16 +28,7 @@ const TableProducts = () => {
             </tr>
           </thead>
           <tbody className="table-body" id="categories-list">
-            {products.map((product) => (
-              <tr key={product.code}>
-                <td>{product.code}</td>
-                <td>{product.name}</td>
-                <td>{product.price}</td>
-                <td>{product.amount}</td>
-                <td>{product.category_name}</td>
-                <td><button className="deletebutton" onClick={() => deleteProduct(product.code)}>Delete</button></td>
-              </tr>
-            ))}
+        <ProductItem/>
           </tbody>
         </table>
       </div>

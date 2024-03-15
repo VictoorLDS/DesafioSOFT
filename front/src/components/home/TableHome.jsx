@@ -1,30 +1,30 @@
-import { cancelCart, removeProductFromCart } from '../../redux/cart/actions'
+import { cancelCart } from '../../redux/cart/actions'
 import { useState, useEffect } from 'react';
-import '../styles/TableHome.css'
-import { useSelector, useDispatch } from 'react-redux'
+import "../../styles/styleHome/TableHome.css"
+import CartItem from './CartItem';
 const urlorderitem = "http://localhost/routes/order_item.php";
 const urlorder = "http://localhost/routes/orders.php";
 const urlproducts = "http://localhost/routes/products.php";
-
+import { useDispatch, useSelector } from 'react-redux';
 
 const TableHome = () => {
-  const dispatch = useDispatch()
-  const {cartProducts} = useSelector(rootReducer => rootReducer.cartReducer)
-  const [totalTax, setTotalTax] = useState(0)
-  const [totalValue, setTotal] = useState(0)
-  const [product, setProduct] = useState([])
 
-  async function getProducts(){
+  const dispatch = useDispatch()
+
+   const {cartProducts} = useSelector(rootReducer => rootReducer.cartReducer)
+   const [product, setProducts] = useState([])
+   const [totalTax, setTotalTax] = useState(0)
+   const [totalValue, setTotal] = useState(0)
+
+
+   async function getProducts(){
     const res = await fetch(urlproducts)
     const data = await res.json()
-    setProduct(data)
-  }
-  console.log(product)
-
+    setProducts(data)
+   }
   useEffect(() => {
     getProducts()
-},[])
-
+  },[])
 
   function objDataToFormData(obj) {
 
@@ -85,11 +85,7 @@ const TableHome = () => {
       handleCancelCart()
     })
   }
-   
 
-  const handleDeleteCartItem = (index) => {
-    dispatch(removeProductFromCart(index))
-  }
 
   const handleCancelCart = () => {
     dispatch(cancelCart())
@@ -102,7 +98,7 @@ const TableHome = () => {
    if(cartProducts.length){
      let totallocal = 0
      let taxlocal = 0
-     //  console.log(totalValue , i.amount , i.price)
+
      cartProducts.forEach((i) => {
        totallocal += ( i.amount * i.price)
        taxlocal +=( i.amount * (i.tax/100))
@@ -138,17 +134,7 @@ const TableHome = () => {
             </tr>
           </thead>
           <tbody className="table-body" id="cart-list">
-            {cartProducts.map((i, index) => (
-              <tr key={index}>
-                <td>{i.product}</td>
-                <td>{i.amount}</td>
-                <td>{i.price}</td>
-                <td>{i.tax/100}</td>
-                <td>
-                  <button className="deletebutton" onClick={() => {handleDeleteCartItem(index)}}>Delete</button>
-                </td>
-              </tr>
-            ))}
+          <CartItem/>
           </tbody>
         </table>
         <div className="totals">
@@ -166,4 +152,4 @@ const TableHome = () => {
   );
 }
 
-export default TableHome
+export {TableHome}
