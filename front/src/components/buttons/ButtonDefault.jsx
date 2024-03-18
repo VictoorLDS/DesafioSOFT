@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 const ButtonDefault = ({buttonFunction, classStyle, isDelete, Text, codeItem}) => {
     return (
       <>
@@ -11,3 +12,7 @@ const ButtonDefault = ({buttonFunction, classStyle, isDelete, Text, codeItem}) =
   }
   
   export default ButtonDefault
+
+
+
+  

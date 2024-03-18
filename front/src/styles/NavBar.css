@@ -20,6 +20,11 @@ header{
     display: flex;
     align-items: center;
     background-color: #30D96B;
+    justify-content: space-between;
+}
+header div{
+    display: flex;
+    align-items: center;
 }
 ul{
     display: flex;
@@ -48,3 +53,31 @@ li p:hover{
     transform: scale(1.2);
     transition: ease-out 0.2s;
 }
+.logoutbutton {
+    margin-right: 40px;
+    cursor: pointer;
+    position: relative;
+    padding: 7px 20px;
+    font-size: 12px;
+    color: rgb(255, 255, 255);
+    border: 2px solid rgb(252, 252, 252);
+    border-radius: 7px;
+    background-color: transparent;
+    font-weight: 600;
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+    overflow: hidden;
+    transition: ease-out 0.3s;
+  }
+  
+
+  .logoutbutton:hover {
+    color: #d72114;
+    border: 2px solid #d72114;
+    scale: 1.1;
+    box-shadow: 0 0px 20px rgba(50, 50, 50, 0.169);
+  }
+  
+  .logoutbutton:active {
+    scale: 1;
+  }
+  

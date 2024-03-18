@@ -52,10 +52,13 @@ const TableHome = () => {
   }
 
   async function handleCreateHistory() {
+    const usercode = JSON.parse(localStorage.getItem("user"))
+    console.log(usercode)
     const order = {
       code: Math.random().toString(16).slice(2),
       total: totalValue,
       tax: totalTax,
+      users_code: usercode.code
     };
     console.log(order)
     const orderData = objDataToFormData(order);

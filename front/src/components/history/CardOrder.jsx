@@ -1,12 +1,12 @@
-import React from 'react'
-const urlorders = "http://localhost/routes/orders.php"
+/* eslint-disable react/prop-types */
 import { useState, useEffect } from "react"
 
 const CardOrder = ({setOrder}) => {
     const [orders, setOrders] = useState([])
 
     async function getOrders(){
-        const res = await fetch(urlorders)
+      const {code} = JSON.parse(localStorage.getItem("user"))
+        const res = await fetch(`http://localhost/routes/orders.php?code=${code}`)
         const data = await res.json()
         // console.log(data)
         setOrders(data)

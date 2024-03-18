@@ -1,0 +1,104 @@
+body{
+    background-color: rgb(232, 232, 232);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue",sans-serif;
+
+}
+
+    .formlog {
+        margin-top: 40px;
+        height: 400px;
+        width: 450px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 20px;
+        position: relative;
+        box-shadow: 1px 4px 14px 1px rgb(123, 123, 123);
+        justify-content: center;
+        align-items: center;
+      }
+      
+      .title {
+        font-size: 28px;
+        color: rgb(42, 221, 86);
+        font-weight: 700;
+        display: flex;
+        text-align: center;
+        padding: 10px;
+      }
+      
+       .signin {
+        color: rgba(88, 87, 87, 0.822);
+        font-size: 14px;
+      }
+      
+      .signin a{
+        text-align: center;
+        text-decoration: none;
+      }
+
+      .formlog .inputreg {
+        width: 100%;
+        padding: 10px 10px 20px 10px;
+        outline: 0;
+        border: 1px solid rgba(105, 105, 105, 0.397);
+        border-radius: 10px;
+      }
+      
+      .formlog  .inputreg  span {
+        position: absolute;
+        left: 10px;
+        top: 15px;
+        color: grey;
+        font-size: 0.9em;
+        cursor: text;
+        transition: 0.3s ease;
+      }
+      
+      .formlog label .inputreg:placeholder-shown + span {
+        top: 15px;
+        font-size: 0.9em;
+      }
+      
+      .formlog label .inputreg:focus + span,.formlog label .inputreg:valid + span {
+        top: 30px;
+        font-size: 0.7em;
+        font-weight: 600;
+      }
+      
+      .formlog label .inputreg:valid + span {
+        color: green;
+      }
+      
+      .submit {
+        border: none;
+        outline: none;
+        width: 100%;
+        background-color: rgb(42, 225, 84);
+        padding: 10px;
+        border-radius: 10px;
+        color: #fff;
+        font-size: 16px;
+        transform: .3s ease;
+      }
+      
+      .submit:hover {
+        background-color: rgb(56, 90, 194);
+      }
+      
+      @keyframes pulse {
+        from {
+          transform: scale(0.9);
+          opacity: 1;
+        }
+      
+        to {
+          transform: scale(1.8);
+          opacity: 0;
+        }
+      }
